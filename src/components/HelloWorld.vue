@@ -8,7 +8,7 @@
         href="https://cli.vuejs.org"
         target="_blank"
         rel="noopener"
-      >vue-cli documentation</a>.
+      > vue-cli documentation </a>.
     </p>
     <h3>Installed CLI Plugins</h3>
     <ul>
@@ -121,8 +121,8 @@ export default {
     msg: {
       type: String,
       default: '',
-    }
-  }
+    },
+  },
 };
 </script>
 
