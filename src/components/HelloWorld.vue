@@ -31,6 +31,14 @@
 </template>
 
 <script>
+console.log('x');
+
+console.log('a');
+
+console.log('b');
+
+console.log('c');
+
 export default {
   name: 'HelloWorld',
   props: {
