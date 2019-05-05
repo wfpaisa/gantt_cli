@@ -1,75 +1,81 @@
 <template>
   <div class="container">
-    <gantt
-      class="left-container"
-      :tasks="apolloTasks"
+    <div
+      id="gantt"
+      ref="gantt"
     />
   </div>
 </template>
 
 <script>
 import gql from 'graphql-tag';
-import Gantt from './Gantt.vue';
+import { gantt } from 'dhtmlx-gantt';
 
 export default {
   name: 'App',
-  components: { Gantt },
-  apollo: {
-    // Simple query that will update the 'hello' vue property
-    tasks: gql`query {
-      tasks{
-        id
-        text
-        start_date
-        duration
-        progress
-        parent
-      }
-    }`,
-    tasklinks: gql`query {
-      tasklinks{
-        id
-        source
-        target
-        type
-      }
-    }`,
-  },
   data() {
     return {
-      tasks: [],
-      tasklinks: [],
-      // ntasks: {data:[],links:[]},
     };
   },
-  computed: {
-
-    apolloTasks() {
-      const cloneTasks = this.tasks.map((obj) => {
-        const newTask = Object.assign({}, obj);
-        delete newTask.__typename; // eslint-disable-line
-        return newTask;
+  computed: {},
+  watch: {},
+  mounted() {
+    this.initGantt();
+    // this.createTask();
+  },
+  methods: {
+    async initGantt() {
+      const queryTasks = await this.$apollo.query({
+        query: gql`query{
+            data: tasks{
+              id
+              text
+              start_date
+              duration
+              progress
+              parent
+            },
+            links: tasklinks{
+              id
+              source
+              target
+              type
+            }
+          }`
+        ,
       });
+      gantt.config.xml_date = '%Y:%m:%d';
+      gantt.init(this.$refs.gantt);
 
-      const cloneTasklinks = this.tasklinks.map((obj) => {
-        const newTasklink = Object.assign({}, obj);
-        delete newTasklink.__typename; // eslint-disable-line
-        return newTasklink;
+      gantt.parse(queryTasks.data);
+    },
+    async createTask() {
+    // Call to the graphql mutation
+      await this.$apollo.mutate({
+      // Query
+        mutation: gql`mutation ($text: String!) {
+        createTask(input:{
+          data:{
+            text: $text
+          }
+        }) {
+          task{
+            id
+            text
+          }
+        }
+      }`,
+        // Parameters
+        variables: {
+          text: 'xtask-2',
+        },
       });
-
-      const tasks = {
-        data: cloneTasks,
-        links: cloneTasklinks,
-      };
-
-      return tasks;
     },
   },
 };
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
   @import "~dhtmlx-gantt/codebase/dhtmlxgantt.css";
 
@@ -78,7 +84,7 @@ export default {
     margin: 0px;
   }
 
-  .left-container{
+  #gantt{
     height: 100vh
   }
 </style>
