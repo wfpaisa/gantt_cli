@@ -3216,6 +3216,11 @@ detect-node@^2.0.4:
   resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.0.4.tgz#014ee8f8f669c5c58023da64b8179c083a28c46c"
   integrity sha512-ZIzRpLJrOj7jjP2miAtgqIfmzbxa4ZOr5jJc601zklsfEx9oTzmmj2nVpIPRpNlRTIh8lc1kyViIY7BWSGNmKw==
 
+dhtmlx-gantt@^6.1.5:
+  version "6.1.5"
+  resolved "https://registry.yarnpkg.com/dhtmlx-gantt/-/dhtmlx-gantt-6.1.5.tgz#216c7d0783d26baf06b9e3a15ec526299da558dd"
+  integrity sha512-KAYL8+z2dpVNlcVFLrbfyoLuZoyCVwizO5MP00zu1JnsfcTLoo9EsWkvcPn28S8lxi4lgA/Kw6cCX1rRPT+2ew==
+
 dicer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/dicer/-/dicer-0.3.0.tgz#eacd98b3bfbf92e8ab5c2fdb71aaac44bb06b872"
