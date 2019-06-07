@@ -1,7 +1,7 @@
 /*
 @license
 
-dhtmlxGantt v.6.1.5 Professional
+dhtmlxGantt v.6.1.5 Professional 
 This software can be used only as part of dhtmlx.com site.
 You are not allowed to use it on any other site
 
